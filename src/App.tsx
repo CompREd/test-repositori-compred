@@ -3,10 +3,11 @@ import { v4 as uuid } from 'uuid';
 
 interface Resource {
   title: string
+  // description: string
   dimension: string
   subdimension?: string
   level: number
-  language: string
+  // language: string
   url: string
 }
 
@@ -14,17 +15,16 @@ const dimensionToColor = new Map();
 dimensionToColor.set('Planificació de la recerca', 'c1');
 dimensionToColor.set('Fonamentació teòrica', 'c2');
 dimensionToColor.set('Disseny i aplicació', 'c3');
-dimensionToColor.set('Discussions i conclusions', 'c4');
+dimensionToColor.set('Discussió i conclusions', 'c4');
 dimensionToColor.set('Bibliografia', 'c5');
 dimensionToColor.set('Comunicació i TIC', 'c6');
 
 const resources: Array<Resource> = [
   {
     title: 'Planteamiento del problema de investigación: desde la óptica cuantitativa y cualitativa',
-    dimension: 'Comunicació i TIC',
+    dimension: 'Planificació de la recerca',
     subdimension: 'Elecció del tema i pregunta de recerca',
     level: 2,
-    language: 'Español',
     url: 'https://www.uca.ac.cr/wp-content/uploads/2017/10/Investigacion.pdf',
   },
   {
@@ -32,7 +32,6 @@ const resources: Array<Resource> = [
     dimension: 'Planificació de la recerca',
     subdimension: 'Elecció del tema i pregunta de recerca',
     level: 1,
-    language: 'Español',
     url: 'https://www.redalyc.org/pdf/1794/179421472004.pdf',
   },
   {
@@ -40,16 +39,116 @@ const resources: Array<Resource> = [
     dimension: 'Planificació de la recerca',
     subdimension: 'Formulació d\'objectius i hipòtesis',
     level: 1,
-    language: 'Català',
     url: 'https://www.eltefege.eu/index.php/2018/03/15/apunt-4-la-formulacio-dels-objectius-de-recerca/',
   },
   {
-    title: 'La formulació dels objectius de recerca',
-    dimension: 'Planificació de la recerca',
-    subdimension: 'Formulació d\'objectius i hipòtesis',
+    title: 'Transcripció de Dades Plurilingües/Multimodals',
+    dimension: 'Fonamentació teòrica',
+    subdimension: 'Cerca d\'informació',
+    level: 2,
+    url: 'https://tutorialfortrans.blogspot.com/',
+  },
+  {
+    title: 'Good Literature Searching',
+    dimension: 'Fonamentació teòrica',
+    subdimension: 'Cerca d\'informació',
     level: 1,
-    language: 'Català',
-    url: 'https://www.eltefege.eu/index.php/2018/03/15/apunt-4-la-formulacio-dels-objectius-de-recerca/',
+    url: 'https://www.review.mai.ac.nz/mrindex/TK/article/view/53/53.html',
+  },
+  {
+    title: 'Art of reading a journal article: Methodically and effectively',
+    dimension: 'Fonamentació teòrica',
+    subdimension: 'Cerca d\'informació',
+    level: 1,
+    url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3687192/',
+  },
+  {
+    title: 'Eines i recursos documentals per al treball de recerca en Educació',
+    dimension: 'Fonamentació teòrica',
+    subdimension: 'Eines per cercar informació',
+    level: 2,
+    url: 'https://ddd.uab.cat/record/142532',
+  },
+  {
+    title: 'Cerca i gestió de la informació: les principals fonts d\'informació en Educació, Psicologia i Logopèdia',
+    dimension: 'Fonamentació teòrica',
+    subdimension: 'Eines per cercar informació',
+    level: 1,
+    url: 'https://ddd.uab.cat/record/174633',
+  },
+  {
+    title: 'Approaching literature review for academic purposes',
+    dimension: 'Fonamentació teòrica',
+    subdimension: 'Estratègies d\'elaboració del text',
+    level: 1,
+    url: 'https://www.scielo.br/scielo.php?pid=S1807-59322019000100318&script=sci_arttext',
+  },
+  {
+    title: 'Best-Practice Recommendations of Methodological Literature Reviews',
+    dimension: 'Fonamentació teòrica',
+    subdimension: 'Estratègies d\'elaboració del text',
+    level: 2,
+    url: 'https://journals.sagepub.com/doi/full/10.1177/1094428120943281',
+  },
+  {
+    title: 'Recerca qualitativa sobre educació plurilingüe',
+    dimension: 'Disseny i aplicació',
+    subdimension: 'Dissenys metodològics',
+    level: 2,
+    url: 'https://research-publishing.net/publication/978-1-908416-47-6.pdf',
+  },
+  {
+    title: 'Studying the Use of Research Evidence: A Review of Methods',
+    dimension: 'Disseny i aplicació',
+    subdimension: 'Dissenys metodològics',
+    level: 2,
+    url: 'https://wtgrantfoundation.org/library/uploads/2019/02/A-Review-of-Methods-FINAL003.pdf',
+  },
+  {
+    title: 'Historias de vida',
+    dimension: 'Disseny i aplicació',
+    subdimension: 'Dissenys metodològics',
+    level: 1,
+    url: 'https://revistas.upr.edu/index.php/griot/article/download/1775/1568',
+  },
+  {
+    title: 'Quantitatiu o Qualitatiu? Escull!',
+    dimension: 'Disseny i aplicació',
+    subdimension: 'Dissenys metodològics',
+    level: 1,
+    url: 'https://goo.gl/ZMy8E6',
+  },
+  {
+    title: 'A guide for naming research studies',
+    dimension: 'Disseny i aplicació',
+    subdimension: 'Dissenys metodològics',
+    level: 1,
+    url: 'https://www.redalyc.org/pdf/337/33770318.pdf',
+  },
+  {
+    title: 'Discussió vs conclusions: principis i directrius ',
+    dimension: 'Discussió i conclusions',
+    level: 1,
+    url: 'https://www.youtube.com/watch?v=_0MwkPVxLYo&list=PLfbyb8xMvO3GYYg9NphpQcrtxrruFTY9R&index=4',
+  },
+  {
+    title: 'What\'s new in APA Style 7th Edition',
+    dimension: 'Bibliografia',
+    level: 1,
+    url: 'https://www.youtube.com/watch?v=jOVZp8m0PCM&feature=youtu.be',
+  },
+  {
+    title: 'Com citar i referenciar en els textos acadèmics',
+    dimension: 'Bibliografia',
+    level: 1,
+    url: 'https://ddd.uab.cat/record/145881?ln=es',
+  },
+  {
+    title: 'Com elaborar el Treball Final de Grau',
+    dimension: 'Comunicació i TIC',
+    subdimension: 'Comunicació escrita i oral de la recerca',
+    level: 1,
+    url: 'https://www.youtube.com/watch?v=8NtqeUeGJTM',
   },
 ];
 
@@ -65,7 +164,7 @@ const App: React.FC = () => (
               <span className={`bg-${color} text-white font-semibold rounded-full px-2 py-1 w-fit`}>{resource.dimension}</span>
               <div className="py-2" />
               <a className="hover:text-gray-500 w-fit" href={resource.url} target="_blank" rel="noreferrer"><h1 className="font-bold">{`Recurs ${index + 1}: ${resource.title}`}</h1></a>
-              <span>{`→ ${resource.subdimension}`}</span>
+              <span>{resource.subdimension ? `→ ${resource.subdimension}` : ''}</span>
               <div className="py-2" />
               {/* eslint-disable-next-line max-len */}
               <a aria-label="resource-link" className="hover:fill-gray-500" href={resource.url} target="_blank" rel="noreferrer"><svg className="absolute right-6 top-[28%]" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14 34q-4.25 0-7.125-2.875T4 24q0-4.25 2.875-7.125T14 14h7q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075Q21.65 17 21 17h-7q-3 0-5 2t-2 5q0 3 2 5t5 2h7q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075Q21.65 34 21 34Zm3.75-8.5q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075.425-.425 1.075-.425h12.5q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075-.425.425-1.075.425ZM27 34q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075Q26.35 31 27 31h7q3 0 5-2t2-5q0-3-2-5t-5-2h-7q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075Q26.35 14 27 14h7q4.25 0 7.125 2.875T44 24q0 4.25-2.875 7.125T34 34Z" /></svg></a>
@@ -93,7 +192,7 @@ const App: React.FC = () => (
               <a className="hover:text-gray-500 w-fit" href={resource.url} target="_blank" rel="noreferrer"><h1 className="font-bold text-white">{`Recurs ${index + 1}: ${resource.title}`}</h1></a>
               {/* eslint-disable-next-line max-len */}
               <a aria-label="resource-link" className="hover:fill-gray-500" href={resource.url} target="_blank" rel="noreferrer"><svg className="fill-white absolute right-6 top-[33%]" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14 34q-4.25 0-7.125-2.875T4 24q0-4.25 2.875-7.125T14 14h7q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075Q21.65 17 21 17h-7q-3 0-5 2t-2 5q0 3 2 5t5 2h7q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075Q21.65 34 21 34Zm3.75-8.5q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075.425-.425 1.075-.425h12.5q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075-.425.425-1.075.425ZM27 34q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075Q26.35 31 27 31h7q3 0 5-2t2-5q0-3-2-5t-5-2h-7q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075Q26.35 14 27 14h7q4.25 0 7.125 2.875T44 24q0 4.25-2.875 7.125T34 34Z" /></svg></a>
-              <span className="text-white">{`→ ${resource.subdimension}`}</span>
+              <span className="text-white">{resource.subdimension ? `→ ${resource.subdimension}` : ''}</span>
               <div className="py-2" />
               <div className="flex items-center">
                 <span className="text-white">Nivell: </span>
