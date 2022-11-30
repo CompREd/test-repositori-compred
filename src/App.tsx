@@ -15,6 +15,7 @@ dimensionToColor.set('Comunicació i TIC', 'c6');
 const resources: Array<Resource> = [
   {
     title: 'Planteamiento del problema de investigación: desde la óptica cuantitativa y cualitativa',
+    type: 'Llibre',
     dimension: 'Planificació de la recerca',
     subdimension: 'Elecció del tema i pregunta de recerca',
     level: 2,
@@ -22,6 +23,7 @@ const resources: Array<Resource> = [
   },
   {
     title: '¿Cómo escoger un tema de investigación y construir una pregunta de investigación?',
+    type: 'Article',
     dimension: 'Planificació de la recerca',
     subdimension: 'Elecció del tema i pregunta de recerca',
     level: 1,
@@ -29,6 +31,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'La formulació dels objectius de recerca',
+    type: 'Recurs web',
     dimension: 'Planificació de la recerca',
     subdimension: 'Formulació d\'objectius i hipòtesis',
     level: 1,
@@ -36,6 +39,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Transcripció de Dades Plurilingües/Multimodals',
+    type: 'Recurs web',
     dimension: 'Fonamentació teòrica',
     subdimension: 'Cerca d\'informació',
     level: 2,
@@ -43,6 +47,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Good Literature Searching',
+    type: 'Article',
     dimension: 'Fonamentació teòrica',
     subdimension: 'Cerca d\'informació',
     level: 1,
@@ -50,6 +55,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Art of reading a journal article: Methodically and effectively',
+    type: 'Article',
     dimension: 'Fonamentació teòrica',
     subdimension: 'Cerca d\'informació',
     level: 1,
@@ -57,6 +63,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Eines i recursos documentals per al treball de recerca en Educació',
+    type: 'Presentació',
     dimension: 'Fonamentació teòrica',
     subdimension: 'Eines per cercar informació',
     level: 2,
@@ -64,6 +71,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Cerca i gestió de la informació: les principals fonts d\'informació en Educació, Psicologia i Logopèdia',
+    type: 'Presentació',
     dimension: 'Fonamentació teòrica',
     subdimension: 'Eines per cercar informació',
     level: 1,
@@ -71,6 +79,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Approaching literature review for academic purposes',
+    type: 'Article',
     dimension: 'Fonamentació teòrica',
     subdimension: 'Estratègies d\'elaboració del text',
     level: 1,
@@ -78,6 +87,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Best-Practice Recommendations of Methodological Literature Reviews',
+    type: 'Article',
     dimension: 'Fonamentació teòrica',
     subdimension: 'Estratègies d\'elaboració del text',
     level: 2,
@@ -85,6 +95,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Recerca qualitativa sobre educació plurilingüe',
+    type: 'Llibre',
     dimension: 'Disseny i aplicació',
     subdimension: 'Dissenys metodològics',
     level: 2,
@@ -92,6 +103,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Studying the Use of Research Evidence: A Review of Methods',
+    type: 'Llibre',
     dimension: 'Disseny i aplicació',
     subdimension: 'Dissenys metodològics',
     level: 2,
@@ -99,6 +111,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Historias de vida',
+    type: 'Article',
     dimension: 'Disseny i aplicació',
     subdimension: 'Dissenys metodològics',
     level: 1,
@@ -106,6 +119,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Quantitatiu o Qualitatiu? Escull!',
+    type: 'Quiz',
     dimension: 'Disseny i aplicació',
     subdimension: 'Dissenys metodològics',
     level: 1,
@@ -113,6 +127,7 @@ const resources: Array<Resource> = [
   },
   {
     title: 'A guide for naming research studies',
+    type: 'Article',
     dimension: 'Disseny i aplicació',
     subdimension: 'Dissenys metodològics',
     level: 1,
@@ -120,24 +135,28 @@ const resources: Array<Resource> = [
   },
   {
     title: 'Discussió vs conclusions: principis i directrius ',
+    type: 'Vídeo',
     dimension: 'Discussió i conclusions',
     level: 1,
     url: 'https://www.youtube.com/watch?v=_0MwkPVxLYo&list=PLfbyb8xMvO3GYYg9NphpQcrtxrruFTY9R&index=4',
   },
   {
     title: 'What\'s new in APA Style 7th Edition',
+    type: 'Vídeo',
     dimension: 'Bibliografia',
     level: 1,
     url: 'https://www.youtube.com/watch?v=jOVZp8m0PCM&feature=youtu.be',
   },
   {
     title: 'Com citar i referenciar en els textos acadèmics',
+    type: 'Llibre',
     dimension: 'Bibliografia',
     level: 1,
     url: 'https://ddd.uab.cat/record/145881?ln=es',
   },
   {
     title: 'Com elaborar el Treball Final de Grau',
+    type: 'Vídeo',
     dimension: 'Comunicació i TIC',
     subdimension: 'Comunicació escrita i oral de la recerca',
     level: 1,
@@ -162,13 +181,13 @@ const App: React.FC = () => {
           })}
         </div>
         <div className="bg-gray-200 h-[80vh] lg:w-[70vw] mx-8 rounded-lg shadow-lg overflow-scroll">
-          { resources.filter((r) => r.dimension.includes(filter)).map((resource, index) => {
+          { resources.filter((r) => r.dimension.includes(filter)).map((resource) => {
             const color = dimensionToColor.get(resource.dimension);
             return (
               <div key={uuid()} className="flex flex-col relative m-4 p-4 rounded-md bg-white shadow-md">
                 <span className={`bg-${color} text-white font-semibold rounded-full px-2 py-1 w-fit`}>{resource.dimension}</span>
                 <div className="py-2" />
-                <a className="hover:text-gray-500 w-fit" href={resource.url} target="_blank" rel="noreferrer"><h1 className="font-bold">{`Recurs ${index + 1}: ${resource.title}`}</h1></a>
+                <a className="hover:text-gray-500 w-fit" href={resource.url} target="_blank" rel="noreferrer"><h1 className="font-bold">{`${resource.type}: ${resource.title}`}</h1></a>
                 <span>{resource.subdimension ? `→ ${resource.subdimension}` : ''}</span>
                 <div className="py-2" />
                 {/* eslint-disable-next-line max-len */}

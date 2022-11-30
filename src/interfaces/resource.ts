@@ -1,6 +1,7 @@
 interface Resource {
   title: string
   // description: string
+  type: string
   dimension: string
   subdimension?: string
   level: number
