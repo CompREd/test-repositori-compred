@@ -1,15 +1,7 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-interface Resource {
-  title: string
-  // description: string
-  dimension: string
-  subdimension?: string
-  level: number
-  // language: string
-  url: string
-}
+import Resource from './interfaces/resource';
 
 const dimensionToColor = new Map();
 dimensionToColor.set('Planificació de la recerca', 'c1');
@@ -154,8 +146,8 @@ const resources: Array<Resource> = [
 
 const App: React.FC = () => (
   <div className="overflow-scroll">
-    <div className="flex flex-col items-center gap-4 justify-center w-[100vw] h-[100vh] bg-gray-50">
-      <h1 className="font-bold uppercase text-xl rounded-lg bg-gray-300 px-2 py-1">Recursos CompREd [test]</h1>
+    <div className="flex flex-col items-center gap-4 justify-center w-[100vw] h-[80vh] bg-gray-50">
+      <h1 className="font-bold uppercase text-xl rounded-lg bg-gray-300 px-2 py-1 mt-10">Recursos CompREd [test]</h1>
       <div className="bg-gray-200 h-[80vh] lg:w-[70vw] mx-8 rounded-lg shadow-lg overflow-scroll">
         { resources.map((resource, index) => {
           const color = dimensionToColor.get(resource.dimension);
@@ -181,7 +173,7 @@ const App: React.FC = () => (
       </div>
     </div>
     <div className="flex flex-col items-center gap-4 justify-center w-[100vw] h-[100vh] bg-gray-50">
-      <h1 className="font-bold uppercase text-xl rounded-lg bg-gray-400 px-2 py-1 text-white">Recursos CompREd [test]</h1>
+      <h1 className="font-bold uppercase text-xl rounded-lg bg-gray-400 px-2 py-1 mt-10 text-white">Recursos CompREd [test]</h1>
       <div className="bg-gray-200 h-[80vh] lg:w-[70vw] mx-8 rounded-lg shadow-lg overflow-scroll">
         { resources.map((resource, index) => {
           const color = dimensionToColor.get(resource.dimension);
