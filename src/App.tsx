@@ -218,7 +218,7 @@ const App: React.FC = () => {
                 </button>
               ))
             }
-            <button type="button" className={`rounded-full px-2 py-1 ${filterLevels.length > 0 ? 'text-white' : 'text-yellow-200 font-semibold'} bg-gray-300`} onClick={() => setFilterLevels([])}>Tots</button>
+            <button type="button" className={`rounded-full px-2 py-1 ${filterLevels.length > 0 ? 'text-white' : 'text-black-200 font-semibold'} bg-gray-300`} onClick={() => setFilterLevels([])}>Tots</button>
           </div>
         </div>
         <div className="col-span-5 overflow-scroll h-full flex flex-col gap-3 rounded-md mx-4">
