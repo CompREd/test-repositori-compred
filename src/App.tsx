@@ -183,7 +183,7 @@ const App: React.FC = () => {
                 <button
                   key={uuid()}
                   type="button"
-                  className={`bg-${color} rounded-full ${filterDimensions.includes(d) ? 'text-black font-bold' : 'text-white'} px-2 py-1`}
+                  className={`bg-${color} rounded-full ${filterDimensions.includes(d) ? 'text-black font-semibold' : 'text-white'} px-2 py-1`}
                   onClick={() => {
                     if (!filterDimensions.includes(d)) {
                       setFilterDimensions(filterDimensions.concat(d));
@@ -196,7 +196,7 @@ const App: React.FC = () => {
                 </button>
               );
             })}
-            <button type="button" className="rounded-full px-2 py-1 text-white bg-gray-300" onClick={() => setFilterDimensions([])}>Totes</button>
+            <button type="button" className={`rounded-full px-2 py-1 ${filterDimensions.length > 0 ? 'text-white' : 'text-black font-semibold'} bg-gray-300`} onClick={() => setFilterDimensions([])}>Totes</button>
           </div>
           <div className="flex gap-2 flex-col mx-4 justify-center items-center">
             <span className="font-bold underline text-center">Nivells</span>
@@ -218,7 +218,7 @@ const App: React.FC = () => {
                 </button>
               ))
             }
-            <button type="button" className={`rounded-full px-2 py-1 ${filterLevels.length > 0 ? 'text-white' : 'text-yellow-200'} bg-gray-300`} onClick={() => setFilterLevels([])}>Tots</button>
+            <button type="button" className={`rounded-full px-2 py-1 ${filterLevels.length > 0 ? 'text-white' : 'text-yellow-200 font-semibold'} bg-gray-300`} onClick={() => setFilterLevels([])}>Tots</button>
           </div>
         </div>
         <div className="col-span-5 overflow-scroll h-full flex flex-col gap-3 rounded-md mx-4">
