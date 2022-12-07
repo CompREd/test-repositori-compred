@@ -165,27 +165,44 @@ const resources: Array<Resource> = [
 ];
 
 const App: React.FC = () => {
-  const [filter, setFilter] = useState<string>('');
+  const [filterDimensions, setFilterDimensions] = useState<Array<string>>([]);
 
   const dimensions = resources.map((resource) => resource.dimension).filter(onlyUnique);
 
   return (
-    <div className="overflow-scroll">
-      <div className="flex flex-col items-center gap-4 justify-center w-[100vw] h-[80vh] bg-gray-50">
-        <h1 className="font-bold uppercase text-xl rounded-lg bg-gray-300 px-2 py-1 mt-10">Recursos CompREd [test]</h1>
-        <div className="flex gap-2 flex-wrap justify-center mx-10">
-          <button type="button" className="bg-gray-400 rounded-full text-white px-2 py-1" onClick={() => setFilter('')}>Tots</button>
-          { dimensions.map((d) => {
-            const color = dimensionToColor.get(d);
-            return <button key={uuid()} type="button" className={`bg-${color} rounded-full text-white px-2 py-1`} onClick={() => setFilter(d)}>{d}</button>;
-          })}
+    <div className="overflow-scroll w-screen h-screen">
+      <div className="grid grid-cols-6 w-full h-full p-2 bg-gray-100">
+        <div className="col-span-1 h-full border-r-gray-400 border-r mx-2">
+          <div className="flex gap-2 flex-col mx-4 h-full justify-center">
+            <span className="font-bold underline text-center">Dimensions</span>
+            <button type="button" className="rounded-full px-2 py-1" onClick={() => setFilterDimensions([])}>Totes</button>
+            { dimensions.map((d) => {
+              const color = dimensionToColor.get(d);
+              return (
+                <button
+                  key={uuid()}
+                  type="button"
+                  className={`bg-${color} rounded-full ${filterDimensions.includes(d) ? 'text-black font-bold' : 'text-white'} px-2 py-1`}
+                  onClick={() => {
+                    if (!filterDimensions.includes(d)) {
+                      setFilterDimensions(filterDimensions.concat(d));
+                    } else {
+                      setFilterDimensions(filterDimensions.filter((currentFilters) => currentFilters !== d));
+                    }
+                  }}
+                >
+                  {d}
+                </button>
+              );
+            })}
+          </div>
         </div>
-        <div className="bg-gray-200 h-[80vh] lg:w-[70vw] mx-8 rounded-lg shadow-lg overflow-scroll">
-          { resources.filter((r) => r.dimension.includes(filter)).map((resource) => {
+        <div className="col-span-5 overflow-scroll h-full flex flex-col gap-3 rounded-md mx-4">
+          { resources.filter((r) => filterDimensions.length === 0 || filterDimensions.includes(r.dimension)).map((resource) => {
             const color = dimensionToColor.get(resource.dimension);
             return (
-              <div key={uuid()} className="flex flex-col relative m-4 p-4 rounded-md bg-white shadow-md">
-                <span className={`bg-${color} text-white font-semibold rounded-full px-2 py-1 w-fit`}>{resource.dimension}</span>
+              <div key={uuid()} className="flex flex-col relative p-4 rounded-md bg-white shadow-md">
+                { filterDimensions.length !== 1 ? <span className={`bg-${color} text-white font-semibold rounded-full px-2 py-1 w-fit`}>{resource.dimension}</span> : <div />}
                 <div className="py-2" />
                 <a className="hover:text-gray-500 w-fit" href={resource.url} target="_blank" rel="noreferrer"><h1 className="font-bold">{`${resource.type}: ${resource.title}`}</h1></a>
                 <span>{resource.subdimension ? `→ ${resource.subdimension}` : ''}</span>
@@ -197,32 +214,6 @@ const App: React.FC = () => {
                   {
                   // eslint-disable-next-line react/no-array-index-key, max-len
                   [...Array(resource.level)].map((e, i) => <svg className={`fill-${color} scale-[.6] mr-[-15px]`} key={i} xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 44q-1.7 0-2.875-1.175T19.95 39.95h8.1q0 1.7-1.175 2.875T24 44Zm-6.6-7.15q-.65 0-1.075-.425Q15.9 36 15.9 35.35q0-.65.425-1.075.425-.425 1.075-.425h13.2q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075-.425.425-1.075.425Zm-1.25-6.05q-3.3-2.15-5.225-5.375Q9 22.2 9 18.15q0-6.1 4.45-10.55Q17.9 3.15 24 3.15q6.1 0 10.55 4.45Q39 12.05 39 18.15q0 4.05-1.9 7.275-1.9 3.225-5.25 5.375Z" /></svg>)
-                }
-                </div>
-              </div>
-            );
-          }) }
-        </div>
-      </div>
-      <div className="flex flex-col items-center gap-4 justify-center w-[100vw] h-[100vh] bg-gray-50">
-        <h1 className="font-bold uppercase text-xl rounded-lg bg-gray-400 px-2 py-1 mt-10 text-white">Recursos CompREd [test]</h1>
-        <div className="bg-gray-200 h-[80vh] lg:w-[70vw] mx-8 rounded-lg shadow-lg overflow-scroll">
-          { resources.map((resource, index) => {
-            const color = dimensionToColor.get(resource.dimension);
-            return (
-              <div key={uuid()} className={`bg-${color} relative flex flex-col m-4 p-4 rounded-md bg-white shadow-md`}>
-                <span className={`text-${color} bg-white font-semibold rounded-full px-2 py-1 w-fit`}>{resource.dimension}</span>
-                <div className="py-2" />
-                <a className="hover:text-gray-500 w-fit" href={resource.url} target="_blank" rel="noreferrer"><h1 className="font-bold text-white">{`Recurs ${index + 1}: ${resource.title}`}</h1></a>
-                {/* eslint-disable-next-line max-len */}
-                <a aria-label="resource-link" className="hover:fill-gray-500" href={resource.url} target="_blank" rel="noreferrer"><svg className="fill-white absolute right-6 top-[33%]" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14 34q-4.25 0-7.125-2.875T4 24q0-4.25 2.875-7.125T14 14h7q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075Q21.65 17 21 17h-7q-3 0-5 2t-2 5q0 3 2 5t5 2h7q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075Q21.65 34 21 34Zm3.75-8.5q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075.425-.425 1.075-.425h12.5q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075-.425.425-1.075.425ZM27 34q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075Q26.35 31 27 31h7q3 0 5-2t2-5q0-3-2-5t-5-2h-7q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075Q26.35 14 27 14h7q4.25 0 7.125 2.875T44 24q0 4.25-2.875 7.125T34 34Z" /></svg></a>
-                <span className="text-white">{resource.subdimension ? `→ ${resource.subdimension}` : ''}</span>
-                <div className="py-2" />
-                <div className="flex items-center">
-                  <span className="text-white">Nivell: </span>
-                  {
-                  // eslint-disable-next-line react/no-array-index-key, max-len
-                  [...Array(resource.level)].map((e, i) => <svg className="fill-white scale-[.6] mr-[-15px]" key={i} xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 44q-1.7 0-2.875-1.175T19.95 39.95h8.1q0 1.7-1.175 2.875T24 44Zm-6.6-7.15q-.65 0-1.075-.425Q15.9 36 15.9 35.35q0-.65.425-1.075.425-.425 1.075-.425h13.2q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075-.425.425-1.075.425Zm-1.25-6.05q-3.3-2.15-5.225-5.375Q9 22.2 9 18.15q0-6.1 4.45-10.55Q17.9 3.15 24 3.15q6.1 0 10.55 4.45Q39 12.05 39 18.15q0 4.05-1.9 7.275-1.9 3.225-5.25 5.375Z" /></svg>)
                 }
                 </div>
               </div>
