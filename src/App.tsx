@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import Resource from './interfaces/resource';
+import checkMobile from './utils/check_mobile';
 import onlyUnique from './utils/only_unique';
 
 const dimensionToColor = new Map();
@@ -180,7 +181,7 @@ const App: React.FC = () => {
   return (
     <div className="overflow-scroll w-screen h-screen">
       <div className="lg:grid flex flex-col grid-cols-6 w-full h-full p-2 bg-gray-100 overflow-scroll">
-        <details className="col-span-1 pb-4 w-full lg:border-r-gray-400 lg:border-r flex flex-col justify-center gap-12">
+        <details open={!checkMobile()} className="col-span-1 pb-4 w-full lg:border-r-gray-400 lg:border-r flex flex-col justify-center gap-12">
           <summary className="font-bold text-xl text-center">Filtres</summary>
           <input type="text" id="textFilter" className="w-full py-2 my-4 text-center rounded-lg shadow-sm" placeholder="Cerca un títol" onChange={handleTextFilterChange} />
           <div className="flex gap-2 flex-col mx-4 justify-center">
