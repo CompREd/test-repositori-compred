@@ -1,4 +1,4 @@
-function onlyUnique(value:any, index:number, self:any) {
+function onlyUnique(value: any, index: number, self: any) {
   return self.indexOf(value) === index;
 }
 
