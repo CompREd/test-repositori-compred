@@ -183,7 +183,9 @@ const App: React.FC = () => {
       <div className="lg:grid flex flex-col grid-cols-6 w-full h-full p-2 bg-gray-100 overflow-scroll">
         <details open={!checkMobile()} className="col-span-1 pb-4 w-full lg:border-r-gray-400 lg:border-r flex flex-col justify-center gap-12">
           <summary className="font-bold text-xl text-center">Filtres</summary>
-          <input type="text" id="textFilter" className="w-full py-2 my-4 text-center rounded-lg shadow-sm" placeholder="Cerca un títol" onChange={handleTextFilterChange} />
+          <div className="flex gap-2 flex-col mx-4 justify-center">
+            <input type="text" id="textFilter" className="w-full py-2 my-4 text-center rounded-lg shadow-sm" placeholder="Cerca un títol" onChange={handleTextFilterChange} />
+          </div>
           <div className="flex gap-2 flex-col mx-4 justify-center">
             <span className="font-bold underline text-center">Dimensions</span>
             { dimensions.map((d) => {
@@ -192,7 +194,7 @@ const App: React.FC = () => {
                 <button
                   key={uuid()}
                   type="button"
-                  className={`bg-${color} rounded-full ${filterDimensions.includes(d) ? 'text-black font-semibold' : 'text-white'} px-2 py-1`}
+                  className={`bg-${color} text-white rounded-full px-2 py-1 ${filterDimensions.includes(d) ? 'font-semibold' : 'opacity-25'}`}
                   onClick={() => {
                     if (!filterDimensions.includes(d)) {
                       setFilterDimensions(filterDimensions.concat(d));
@@ -205,7 +207,7 @@ const App: React.FC = () => {
                 </button>
               );
             })}
-            <button type="button" className={`rounded-full px-2 py-1 ${filterDimensions.length > 0 ? 'text-white' : 'text-black font-semibold'} bg-gray-300`} onClick={() => setFilterDimensions([])}>Totes</button>
+            <button type="button" className={`rounded-full px-2 py-1 text-white ${filterDimensions.length > 0 ? 'opacity-75' : 'font-semibold'} bg-gray-300`} onClick={() => setFilterDimensions([])}>Totes</button>
           </div>
           <div className="flex gap-2 lg:flex-col mx-4 justify-center items-center mt-6">
             <span className="font-bold underline text-center">Nivells</span>
@@ -214,7 +216,7 @@ const App: React.FC = () => {
                 <button
                   key={uuid()}
                   type="button"
-                  className={`bg-gray-300 w-fit pr-4 items-center rounded-full ${filterLevels.includes(index + 1) ? 'fill-yellow-200' : 'fill-white'} flex justify-center`}
+                  className={`bg-gray-300 w-fit pr-4 items-center rounded-full ${filterLevels.includes(index + 1) ? 'fill-yellow-200' : 'fill-white opacity-25'} flex justify-center`}
                   onClick={() => {
                     if (!filterLevels.includes(index + 1)) {
                       setFilterLevels(filterLevels.concat(index + 1));
@@ -227,7 +229,7 @@ const App: React.FC = () => {
                 </button>
               ))
             }
-            <button type="button" className={`rounded-full px-2 py-1 ${filterLevels.length > 0 ? 'text-white' : 'text-black-200 font-semibold'} bg-gray-300`} onClick={() => setFilterLevels([])}>Tots</button>
+            <button type="button" className={`rounded-full px-2 py-1 text-white bg-gray-300 ${filterLevels.length > 0 ? 'opacity-75' : 'font-semibold'}`} onClick={() => setFilterLevels([])}>Tots</button>
           </div>
         </details>
         <div className="col-span-5 overflow-scroll h-full flex flex-col gap-3 rounded-md mx-4">
